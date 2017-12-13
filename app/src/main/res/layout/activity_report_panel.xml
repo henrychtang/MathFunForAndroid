@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="home.henry.mathandroid.ReportPanelActivity">
+
+    <TextView
+        android:id="@+id/textView_this_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This Time:"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_total_test_done" />
+
+    <TextView
+        android:id="@+id/textView_this_time_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="188dp"
+        android:text="38sec"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_total_test_done"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Average:"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_this_time"
+
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView_average_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="188dp"
+        android:text="48sec"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+
+        app:layout_constraintTop_toBottomOf="@id/textView_this_time" />
+
+    <TextView
+        android:id="@+id/textView_best"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best:"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_average"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView_best_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="188dp"
+        android:text="36sec"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_average" />
+
+    <TextView
+        android:id="@+id/textView_worst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Worst:"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_best"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView_total_test_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Test Done:"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView_total_test_done_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="188dp"
+        android:text="8 times"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+    <TextView
+        android:id="@+id/textView_worst_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="188dp"
+        android:text="64sec"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/textView_best" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="98dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="50dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="50dp" />
+
+    <TextView
+        android:id="@+id/textView_your_performance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your  Performance"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/guideline_title_top"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_title_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+</android.support.constraint.ConstraintLayout>

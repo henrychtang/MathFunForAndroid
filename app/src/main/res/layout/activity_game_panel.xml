@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="home.henry.mathandroid.GamePanelActivity">
+
+
+
+
+    <TextView
+        android:id="@+id/QUESTIONNUMBER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q1:"
+        android:textSize="24sp"
+        android:textAlignment="viewStart"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left2"
+        tools:layout_editor_absoluteX="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <TextView
+        android:id="@+id/QUESTION"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:text="1+2=?"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left2"
+        app:layout_constraintTop_toBottomOf="@+id/QUESTIONNUMBER"
+        tools:layout_editor_absoluteX="8dp" />
+
+
+    <EditText
+        android:id="@+id/ANSWER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="48sp"
+        app:layout_constraintTop_toBottomOf="@+id/QUESTION"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left2"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right2"
+        android:textAlignment="textEnd"
+        android:imeOptions="actionDone"
+        android:focusableInTouchMode="true"
+        android:backgroundTint="@android:color/darker_gray"
+        />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline_left2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="36dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline_right2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="36dp" />
+
+</android.support.constraint.ConstraintLayout>
