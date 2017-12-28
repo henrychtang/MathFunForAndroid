@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This Time:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/textView_total_test_done" />
 
@@ -19,10 +19,9 @@
         android:id="@+id/textView_this_time_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="188dp"
         android:text="38sec"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/textView_total_test_done"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
@@ -32,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Average:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/textView_this_time"
 
@@ -43,11 +42,9 @@
         android:id="@+id/textView_average_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="188dp"
         android:text="48sec"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
-
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/textView_this_time" />
 
     <TextView
@@ -55,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Best:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/textView_average"
         tools:layout_editor_absoluteX="16dp"
@@ -67,8 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="188dp"
         android:text="36sec"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/textView_average" />
 
     <TextView
@@ -76,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Worst:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/textView_best"
         tools:layout_editor_absoluteX="16dp"
@@ -85,23 +82,82 @@
     <TextView
         android:id="@+id/textView_total_test_done"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginTop="15dp"
         android:text="Total Test Done:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/guideline_top"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/textView_elapsed_time" />
 
     <TextView
         android:id="@+id/textView_total_test_done_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="188dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:text="sec"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_elapsed_time"
+        app:layout_constraintLeft_toRightOf="@id/textView_elapsed_time" />
+
+    <TextView
+        android:id="@+id/textView_total_test_done_result3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="8 times"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/textView_elapsed_time" />
+
+    <TextView
+        android:id="@+id/textView_elapsed_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        android:text="46"
+        android:textSize="80sp"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/textView_message" />
+
+    <TextView
+        android:id="@+id/textView_welldone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Well done! "
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+
         app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+    <TextView
+        android:id="@+id/textView_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guest"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+        app:layout_constraintBottom_toTopOf="@id/star_rating_bar" />
+
+    <TextView
+        android:id="@+id/textView_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You've finished the test in:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+
+        app:layout_constraintTop_toBottomOf="@id/textView_welldone" />
 
     <TextView
         android:id="@+id/textView_worst_result"
@@ -109,8 +165,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="188dp"
         android:text="64sec"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/textView_best" />
 
     <android.support.constraint.Guideline
@@ -118,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="98dp" />
+        app:layout_constraintGuide_end="413dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right"
@@ -134,21 +190,28 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="50dp" />
 
-    <TextView
-        android:id="@+id/textView_your_performance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your  Performance"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/guideline_title_top"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <android.support.constraint.Guideline
         android:id="@+id/guideline_title_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp" />
+
+    <RatingBar
+        android:id="@+id/star_rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:stepSize="0.1"
+        android:numStars="5"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:rating="3"
+
+        android:progressTint="@android:color/holo_orange_light"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+        app:layout_constraintBottom_toTopOf="@id/guideline_top"
+        />
 </android.support.constraint.ConstraintLayout>

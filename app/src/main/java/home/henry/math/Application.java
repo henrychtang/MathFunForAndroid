@@ -3,9 +3,7 @@ package home.henry.math;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- * Created by Henry on 27/11/2017.
- */
+
 public class Application {
     public static void main(String[] args) throws Exception {
         String user = args[0];
@@ -17,18 +15,17 @@ public class Application {
             resultStore.showReport(user);
         }
         getReady();
-        Timer.startTimer();
+        TailoredTimer.startTimer();
         performTest();
-        Timer.stopTimer();
-        Timer.showElapsedTime();
+        TailoredTimer.stopTimer();
+        TailoredTimer.showElapsedTime();
         System.out.println("========================== The End ==========================");
-        ResultElement resultElement = new ResultElement(user, new Date(), (int) Timer.getElapsedTime());
+        ResultElement resultElement = new ResultElement(user, new Date(), (int) TailoredTimer.getElapsedTime());
         resultStore.addResult(resultElement);
         resultStore.showReport(resultElement);
-
     }
 
-    static void showGreeting(String user) {
+    static void showGreeting(final String user) {
         System.out.println("Hello, " + user + "!!!");
         System.out.println("I will help you to improve your speed of calculation");
         System.out.println("You will be asked to answer 20 Questions.");
@@ -43,8 +40,6 @@ public class Application {
     }
 
     static void performTest() {
-
-
         for (int i = 1; i <= 20; ++i) {
             AdditionQuestion additionQuestion = new AdditionQuestion(i);
             additionQuestion.showQuestion();

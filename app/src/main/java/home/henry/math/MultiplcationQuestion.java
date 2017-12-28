@@ -3,9 +3,6 @@ package home.henry.math;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Created by Henry on 27/11/2017.
- */
 public class MultiplcationQuestion {
     int questionNum;
     int num1;
@@ -37,7 +34,4 @@ public class MultiplcationQuestion {
     public void showQuestion() {
         System.out.println(questionNum + ": " + num1 + " + " + num2 + " = ?");
     }
-
-
-
 }

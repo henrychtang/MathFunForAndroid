@@ -2,51 +2,50 @@ package home.henry.math;
 
 import java.util.Date;
 
-/**
- * Created by Henry on 28/11/2017.
- */
-public class ResultElement {
-    String user;
-    Date date;
-    int performanceInSec;
 
-    public ResultElement(){
+public class ResultElement {
+    String profile;
+    Date date;
+    double performanceInSec;
+
+    public ResultElement() {
 
     }
-    public ResultElement(String user, Date date, int performanceInSec) {
-        this.user = user;
+
+    public ResultElement(String profile, Date date, double performanceInSec) {
+        this.profile = profile;
         this.date = date;
         this.performanceInSec = performanceInSec;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setPerformanceInSec(int performanceInSec) {
+    public void setPerformanceInSec(double performanceInSec) {
         this.performanceInSec = performanceInSec;
     }
 
-    public String getUser() {
-        return user;
+    public String getProfile() {
+        return profile;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public int getPerformanceInSec() {
+    public double getPerformanceInSec() {
         return performanceInSec;
     }
 
     @Override
     public String toString() {
         return "ResultElement{" +
-                "user='" + user + '\'' +
+                "profile='" + profile + '\'' +
                 ", date=" + date +
                 ", performanceInSec=" + performanceInSec +
                 '}';

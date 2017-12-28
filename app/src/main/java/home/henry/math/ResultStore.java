@@ -5,23 +5,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
-;
-/**
- * Created by Henry on 28/11/2017.
- */
 public class ResultStore {
     List<ResultElement> resultList;
-    ObjectMapper objectMapper = new ObjectMapper();
-    String resultDbFile = "target/resultDB.json";
-
+    String resultDbFile;
+    DecimalFormat df = new DecimalFormat("#.##");
     public ResultStore() {
-
-
         if (resultStoreExist()) {
             resultList = readFromResultStore();
             System.out.println("Ready from file...");
@@ -30,17 +28,26 @@ public class ResultStore {
             resultList = createDummyResultList();
             writeToResultStore(resultList);
         }
-        //   System.out.println(resultList);
+    }
 
+    public ResultStore(String fullpath) {
+        resultDbFile = fullpath;
+        if (resultStoreExist()) {
+            resultList = readFromResultStore();
+            System.out.println("Ready from file...");
+        } else {
+            System.out.println("Create new resultStore...");
+            resultList = createDummyResultList();
+            writeToResultStore(resultList);
+        }
     }
 
 
-    List<ResultElement> createDummyResultList() {
-
+    public List<ResultElement> createDummyResultList() {
         List resultList = new LinkedList<ResultElement>();
-        ResultElement resultElement1 = new ResultElement("Audrey", new Date(), 78);
-        ResultElement resultElement2 = new ResultElement("Audrey", new Date(), 60);
-        ResultElement resultElement3 = new ResultElement("Audrey", new Date(), 54);
+        ResultElement resultElement1 = new ResultElement("Guest", new Date(), 78);
+        ResultElement resultElement2 = new ResultElement("Guest", new Date(), 60);
+        ResultElement resultElement3 = new ResultElement("Guest", new Date(), 54);
         resultList.add(resultElement1);
         resultList.add(resultElement2);
         resultList.add(resultElement3);
@@ -48,7 +55,7 @@ public class ResultStore {
         return resultList;
     }
 
-    void writeToResultStore(List<ResultElement> resultList) {
+    public void writeToResultStore(List<ResultElement> resultList) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File(resultDbFile), resultList);
@@ -58,7 +65,7 @@ public class ResultStore {
 
     }
 
-    List<ResultElement> readFromResultStore() {
+    public List<ResultElement> readFromResultStore() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(new File(resultDbFile), new TypeReference<List<ResultElement>>() {
@@ -71,7 +78,7 @@ public class ResultStore {
 
     }
 
-    void addResult(ResultElement resultElement) {
+    public void addResult(ResultElement resultElement) {
         resultList.add(resultElement);
         writeToResultStore(resultList);
         System.out.println("Test result persisted");
@@ -90,81 +97,90 @@ public class ResultStore {
     }
 
 
-    int getUserAverage(List<ResultElement> userResultList) {
-        int total = 0;
-        for (int i = 0; i < userResultList.size(); ++i) {
-            total = total + userResultList.get(i).getPerformanceInSec();
+    public String getProfileAverage(List<ResultElement> profileResultList) {
+        double total = 0;
+        for (int i = 0; i < profileResultList.size(); ++i) {
+            total = total + profileResultList.get(i).getPerformanceInSec();
         }
-        return total / userResultList.size();
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(total / profileResultList.size());
     }
 
-    int getUserBestList(List<ResultElement> userResultList) {
-        int bestTime = userResultList.get(0).getPerformanceInSec();
-        for (int i = 0; i < userResultList.size(); ++i) {
-            bestTime = userResultList.get(i).getPerformanceInSec() < bestTime ? userResultList.get(i).getPerformanceInSec() : bestTime;
+    public String getProfileBest(List<ResultElement> profileResultList) {
+        double bestTime = profileResultList.get(0).getPerformanceInSec();
+        for (int i = 0; i < profileResultList.size(); ++i) {
+            bestTime = profileResultList.get(i).getPerformanceInSec() < bestTime ? profileResultList.get(i).getPerformanceInSec() : bestTime;
         }
-        return bestTime;
+        return df.format(bestTime);
     }
 
-    int getUserWorstList(List<ResultElement> userResultList) {
-        int worstTime = userResultList.get(0).getPerformanceInSec();
-        for (int i = 0; i < userResultList.size(); ++i) {
-            worstTime = userResultList.get(i).getPerformanceInSec() > worstTime ? userResultList.get(i).getPerformanceInSec() : worstTime;
+    public String getProfileWorst(List<ResultElement> profileResultList) {
+        double worstTime = profileResultList.get(0).getPerformanceInSec();
+        for (int i = 0; i < profileResultList.size(); ++i) {
+            worstTime = profileResultList.get(i).getPerformanceInSec() > worstTime ? profileResultList.get(i).getPerformanceInSec() : worstTime;
         }
-        return worstTime;
+        return df.format(worstTime);
     }
-    boolean isNewPlayer(final String user){
 
-
+    boolean isNewPlayer(final String profile) {
         Collection<ResultElement> result = Collections2.filter(resultList, new Predicate<ResultElement>() {
 
 
             @Override
             public boolean apply(final ResultElement resultElement) {
-                return resultElement.getUser().equals(user);
+                return resultElement.getProfile().equals(profile);
             }
         });
-        return result.size()==0? true:false;
+        return result.size() == 0 ? true : false;
     }
-    void showReport(final String user) {
 
-        Collection<ResultElement> userReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
+    public List<ResultElement> getProfileStatistics(final String profile){
+        Collection<ResultElement> profileReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
             @Override
             public boolean apply(final ResultElement resultElement) {
-                return resultElement.getUser().equals(user);
+                return resultElement.getProfile().equals(profile);
             }
         });
-        List userReusultList = new ArrayList(userReusult);
-        System.out.println(userReusultList);
+        List profileReusultList = new ArrayList(profileReusult);
+        return profileReusultList;
+    }
+    public void showReport(final String profile) {
+        Collection<ResultElement> profileReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
+            @Override
+            public boolean apply(final ResultElement resultElement) {
+                return resultElement.getProfile().equals(profile);
+            }
+        });
+        List profileReusultList = new ArrayList(profileReusult);
+        System.out.println(profileReusultList);
         System.out.println("========================Test Report===========================");
-        System.out.println(user + " , well come back!");
+        System.out.println(profile + " , well come back!");
         System.out.println("Here's your previous results..."
         );
-        System.out.println("Total test done: " + userReusultList.size());
-        System.out.println("Average: " + getUserAverage(userReusultList) + " sec");
-        System.out.println("Best: " + getUserBestList(userReusultList) + " sec");
-        System.out.println("Worst: " + getUserWorstList(userReusultList) + " sec");
+        System.out.println("Total test done: " + profileReusultList.size());
+        System.out.println("Average: " + getProfileAverage(profileReusultList) + " sec");
+        System.out.println("Best: " + getProfileBest(profileReusultList) + " sec");
+        System.out.println("Worst: " + getProfileWorst(profileReusultList) + " sec");
         System.out.println("==============================================================");
 
     }
 
-    void showReport(final ResultElement userResultElement) {
-
+    public void showReport(final ResultElement userResultElement) {
         Collection<ResultElement> userReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
             @Override
             public boolean apply(final ResultElement resultElement) {
-                return resultElement.getUser().equals(userResultElement.getUser());
+                return resultElement.getProfile().equals(userResultElement.getProfile());
             }
         });
         List userReusultList = new ArrayList(userReusult);
         System.out.println(userReusultList);
         System.out.println("========================Test Report===========================");
-        System.out.println(userResultElement.getUser() + " , here's your test report...");
+        System.out.println(userResultElement.getProfile() + " , here's your test report...");
         System.out.println("Total test done: " + userReusultList.size());
         System.out.println("This Time: " + userResultElement.getPerformanceInSec() + " sec");
-        System.out.println("Average: " + getUserAverage(userReusultList) + " sec");
-        System.out.println("Best: " + getUserBestList(userReusultList) + " sec");
-        System.out.println("Worst: " + getUserWorstList(userReusultList) + " sec");
+        System.out.println("Average: " + getProfileAverage(userReusultList) + " sec");
+        System.out.println("Best: " + getProfileBest(userReusultList) + " sec");
+        System.out.println("Worst: " + getProfileWorst(userReusultList) + " sec");
         System.out.println("==============================================================");
 
     }

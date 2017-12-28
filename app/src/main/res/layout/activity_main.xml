@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.henry.mathandroid.MainActivity">
+    tools:context="home.henry.mathandroid.MainActivity"
+
+   >
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_left"
@@ -39,11 +41,22 @@
     <Button
         android:id="@+id/CONFIG"
         android:layout_height="wrap_content"
-        android:text="CONFIG"
+        android:text="Config"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/REPORT"
         android:layout_width="300dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/ABOUT"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="About"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/CONFIG"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -55,10 +68,29 @@
         app:layout_constraintGuide_end="111dp" />
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline_top"
-        app:layout_constraintGuide_begin="125dp"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="436dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="3dp"
+        android:entries="@array/user_profiles"/>
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="300dp"
+        android:layout_height="280dp"
+        android:src="@drawable/mathfunlogo"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="70dp"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/spinner"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -3,12 +3,7 @@ package home.henry.math;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Created by Henry on 27/11/2017.
- */
 public class AdditionQuestion {
-
-
     int questionNum;
     int num1;
     int num2;
@@ -23,7 +18,7 @@ public class AdditionQuestion {
     }
 
     public void nextQuestion() {
-        questionNum = questionNum+1;
+        questionNum = questionNum + 1;
         Random random = new Random();
         num1 = random.nextInt(7) + 3;
         num2 = random.nextInt(7) + 3;
@@ -50,7 +45,7 @@ public class AdditionQuestion {
 
 
     public String getQuestionNumber() {
-        return "Q" +questionNum + ": ";
+        return  questionNum+"" ;
     }
 
     public String getQuestion() {

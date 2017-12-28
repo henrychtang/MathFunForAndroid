@@ -4,4 +4,14 @@
     <string name="title_activity_report">report</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+
+    <string-array name="user_profiles">
+        <item>Guest</item>
+        <item>Anson</item>
+        <item>Audrey</item>
+        <item>Agnes</item>
+        <item>Henry</item>
+    </string-array>
 </resources>
