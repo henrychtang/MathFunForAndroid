@@ -19,6 +19,7 @@ public class ResultStore {
     List<ResultElement> resultList;
     String resultDbFile;
     DecimalFormat df = new DecimalFormat("#.##");
+
     public ResultStore() {
         if (resultStoreExist()) {
             resultList = readFromResultStore();
@@ -96,8 +97,18 @@ public class ResultStore {
         }
     }
 
+    public String getProfileLastTime(List<ResultElement> profileResultList) {
+        if (isFirstAttempt(profileResultList))
+            return "N/A";
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(profileResultList.get(profileResultList.size() - 1).getPerformanceInSec());
+    }
 
     public String getProfileAverage(List<ResultElement> profileResultList) {
+        if (isFirstAttempt(profileResultList))
+            return "N/A";
+
         double total = 0;
         for (int i = 0; i < profileResultList.size(); ++i) {
             total = total + profileResultList.get(i).getPerformanceInSec();
@@ -106,7 +117,14 @@ public class ResultStore {
         return df.format(total / profileResultList.size());
     }
 
+    private boolean isFirstAttempt(List<ResultElement> profileResultList) {
+        return (profileResultList.size() == 0);
+    }
+
     public String getProfileBest(List<ResultElement> profileResultList) {
+        if (isFirstAttempt(profileResultList))
+            return "N/A";
+
         double bestTime = profileResultList.get(0).getPerformanceInSec();
         for (int i = 0; i < profileResultList.size(); ++i) {
             bestTime = profileResultList.get(i).getPerformanceInSec() < bestTime ? profileResultList.get(i).getPerformanceInSec() : bestTime;
@@ -115,6 +133,9 @@ public class ResultStore {
     }
 
     public String getProfileWorst(List<ResultElement> profileResultList) {
+        if (isFirstAttempt(profileResultList))
+            return "N/A";
+
         double worstTime = profileResultList.get(0).getPerformanceInSec();
         for (int i = 0; i < profileResultList.size(); ++i) {
             worstTime = profileResultList.get(i).getPerformanceInSec() > worstTime ? profileResultList.get(i).getPerformanceInSec() : worstTime;
@@ -134,7 +155,7 @@ public class ResultStore {
         return result.size() == 0 ? true : false;
     }
 
-    public List<ResultElement> getProfileStatistics(final String profile){
+    public List<ResultElement> getProfileStatistics(final String profile) {
         Collection<ResultElement> profileReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
             @Override
             public boolean apply(final ResultElement resultElement) {
@@ -144,6 +165,7 @@ public class ResultStore {
         List profileReusultList = new ArrayList(profileReusult);
         return profileReusultList;
     }
+
     public void showReport(final String profile) {
         Collection<ResultElement> profileReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
             @Override

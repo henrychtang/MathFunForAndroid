@@ -1,9 +1,12 @@
 package home.henry.mathandroid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,19 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import home.henry.math.Config;
-import home.henry.math.ConfigStore;
-import home.henry.math.ResultStore;
-
 public class MainActivity extends Activity {
-    private SpinnerAdapter spinnerAdapter;
     private ImageView imageViewLogo;
     private MediaPlayer mp;
-    private ConfigStore configStore;
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -41,17 +37,23 @@ public class MainActivity extends Activity {
         final Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.user_profiles, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         String[] profiles=getResources().getStringArray(R.array.user_profiles);
         spinner.setSelection(getProfileIndex(profiles));
+
+
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
 
                 Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-                Config.setPROFILE(spinner.getSelectedItem().toString());
+                final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                editor.putString("profile", parent.getItemAtPosition(position).toString());
+                editor.commit();
             }
 
             @Override
@@ -63,9 +65,12 @@ public class MainActivity extends Activity {
     }
 
     private int getProfileIndex(String[] profiles) {
+
+      final String profileName = getProfile(this);
+
         int i=0;
         for(String profile : profiles){
-            if(profile.equals(Config.getPROFILE()))
+            if(profile.equals(profileName))
                 break;
             else
                 i++;
@@ -83,13 +88,14 @@ public class MainActivity extends Activity {
 
     }
 
-    protected void onGamePanel(View fromView) {
+    public void onGamePanel(View fromView) {
         Intent myIntent = new Intent(MainActivity.this, GamePanelActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
-    protected void onReportPanel(View fromView) {
+    public void onReportPanel(View fromView) {
         Intent myIntent = new Intent(MainActivity.this, ReportPanelActivity.class);
+        myIntent.putExtra("showComment", false);
         MainActivity.this.startActivity(myIntent);
     }
 
@@ -100,5 +106,14 @@ public class MainActivity extends Activity {
         mp.stop();
     }
 
+    public static String getProfile(Activity activity) {
+        final SharedPreferences sharedPreferences  = PreferenceManager.getDefaultSharedPreferences(activity);
+        return sharedPreferences.getString("profile", "Guest");
+    }
+
+    public static int getNumOfQuestions(Activity activity) {
+        final SharedPreferences sharedPreferences  = PreferenceManager.getDefaultSharedPreferences(activity);
+        return sharedPreferences.getInt("questionCount", 20);
+    }
 
 }

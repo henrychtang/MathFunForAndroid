@@ -86,7 +86,7 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="300dp"
         android:layout_height="280dp"
-        android:src="@drawable/mathfunlogo"
+        android:src="@drawable/math_fun_logo"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="70dp"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"

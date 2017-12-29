@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView_elapsed_time" />
 
     <TextView
-        android:id="@+id/textView_total_test_done_result"
+        android:id="@+id/textView_sec_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"

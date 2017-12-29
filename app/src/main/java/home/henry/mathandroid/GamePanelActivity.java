@@ -3,6 +3,7 @@ package home.henry.mathandroid;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,7 +20,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import home.henry.math.AdditionQuestion;
-import home.henry.math.Config;
 import home.henry.math.ResultElement;
 import home.henry.math.ResultStore;
 import home.henry.math.TailoredTimer;
@@ -34,6 +34,10 @@ public class GamePanelActivity extends Activity {
     private AdditionQuestion additionQuestion;
     public int seconds = 0;
     public int minutes = 0;
+
+    private String configProfile;
+    private int configQuestionsCount;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
@@ -41,13 +45,18 @@ public class GamePanelActivity extends Activity {
 //        String[] planets = res.getStringArray(R.array.user_profiles);
 
         super.onCreate(savedInstanceState);
+
+        configProfile = MainActivity.getProfile(this);
+        configQuestionsCount = MainActivity.getNumOfQuestions(this);
+
         setContentView(R.layout.activity_game_panel);
         questionNumberTextView = (TextView) this.findViewById(R.id.QUESTIONNUMBER);
         questionTextView = (TextView) this.findViewById(R.id.QUESTION);
         profileTextView = (TextView)this.findViewById(R.id.PROFILE);
         answerEditText = (EditText) this.findViewById(R.id.ANSWER);
         answerEditText.setText("");
-        profileTextView.setText(Config.getPROFILE());
+
+        profileTextView.setText(configProfile);
         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         Log.i("TEST", "log is working");
@@ -79,7 +88,7 @@ public class GamePanelActivity extends Activity {
         }, 0, 1000);
 
 
-        questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+Config.getNumOfQuestions()+":");
+        questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+configQuestionsCount+":");
 
         answerEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -97,10 +106,10 @@ public class GamePanelActivity extends Activity {
                         Toast toast = Toast.makeText(getApplicationContext(), "Excellent!", Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
-                        if (additionQuestion.getQuestionNum() == Config.getNumOfQuestions()) {
+                        if (additionQuestion.getQuestionNum() == configQuestionsCount) {
                             TailoredTimer.stopTimer();
                             ResultStore resultStore = new ResultStore(getApplicationContext().getFilesDir() + "resultDB.json");
-                            ResultElement resultElement = new ResultElement(Config.getPROFILE(), new Date(), (double) TailoredTimer.getElapsedTime());
+                            ResultElement resultElement = new ResultElement(configProfile, new Date(), (double) TailoredTimer.getElapsedTime());
                             resultStore.addResult(resultElement);
                             inputMethodManager.hideSoftInputFromWindow(answerEditText.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
                             Intent myIntent = new Intent(GamePanelActivity.this, ReportPanelActivity.class);
@@ -109,7 +118,7 @@ public class GamePanelActivity extends Activity {
                         } else {
                             additionQuestion.nextQuestion();
                             questionTextView.setText(additionQuestion.getQuestion());
-                            questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+Config.getNumOfQuestions()+":");
+                            questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+configQuestionsCount+":");
                         }
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT);
@@ -123,12 +132,14 @@ public class GamePanelActivity extends Activity {
         });
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
         Log.i("TEST", "gamepanel is back");
         questionTextView.setText(additionQuestion.getQuestion());
-        questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+Config.getNumOfQuestions()+":");
+        questionNumberTextView.setText("Q "+ additionQuestion.getQuestionNumber()+" of "+MainActivity.getNumOfQuestions(this)+":");
     }
 
     @Override
