@@ -1,7 +1,6 @@
 package home.henry.mathandroid;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -34,34 +33,6 @@ public class MainActivity extends Activity {
         imageViewLogo = findViewById(R.id.imageViewLogo);
         imageViewLogo.setAnimation(animation);
 
-        final Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.user_profiles, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        String[] profiles=getResources().getStringArray(R.array.user_profiles);
-        spinner.setSelection(getProfileIndex(profiles));
-
-
-
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-
-                Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-                final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-                editor.putString("profile", parent.getItemAtPosition(position).toString());
-                editor.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-
     }
 
     private int getProfileIndex(String[] profiles) {
@@ -92,7 +63,10 @@ public class MainActivity extends Activity {
         Intent myIntent = new Intent(MainActivity.this, GamePanelActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
-
+    public void onSettingPanel(View fromView) {
+        Intent myIntent = new Intent(MainActivity.this, SettingActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
     public void onReportPanel(View fromView) {
         Intent myIntent = new Intent(MainActivity.this, ReportPanelActivity.class);
         myIntent.putExtra("showComment", false);
@@ -111,9 +85,13 @@ public class MainActivity extends Activity {
         return sharedPreferences.getString("profile", "Guest");
     }
 
-    public static int getNumOfQuestions(Activity activity) {
-        final SharedPreferences sharedPreferences  = PreferenceManager.getDefaultSharedPreferences(activity);
-        return sharedPreferences.getInt("questionCount", 20);
+    public static String getNumberOfQuestions(Activity activity) {
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        return sharedPreferences.getString("number_of_questions", "20");
+    }
+    public static String getQuestionType(Activity activity) {
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        return sharedPreferences.getString("question_type", "Addition");
     }
 
 }

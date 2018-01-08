@@ -20,10 +20,14 @@ import home.henry.math.TailoredTimer;
 public class ReportPanelActivity extends Activity {
 
     ResultStore resultStore;
-    TextView messageTextView, elapsedTimeLabelTextView, secLabelTextView, commentTextView, profileTimeTextView, elapsedTimeTextView, totalDoneTextView, thisTimeTextView, thisTimeLabelTextView, bestTextView, averageTextView, worstTextView;
+    TextView messageTextView, elapsedTimeLabelTextView, secLabelTextView,
+            commentTextView, profileTimeTextView, elapsedTimeTextView,
+            totalDoneTextView, thisTimeTextView, thisTimeLabelTextView,
+            bestTextView, averageTextView, worstTextView,
+            questionTypeTextView;
     RatingBar starRatingBar;
 
-    private String configProfile;
+    private String configProfile, configQuestionType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class ReportPanelActivity extends Activity {
 
 
         configProfile = MainActivity.getProfile(this);
-
+        configQuestionType = MainActivity.getQuestionType(this);
         starRatingBar = (RatingBar) findViewById(R.id.star_rating_bar);
         starRatingBar.setEnabled(false);
         messageTextView = findViewById(R.id.textView_message);
@@ -40,13 +44,14 @@ public class ReportPanelActivity extends Activity {
         secLabelTextView = findViewById(R.id.textView_sec_label);
         profileTimeTextView = (TextView) findViewById(R.id.textView_profile);
         elapsedTimeTextView = (TextView) findViewById(R.id.textView_elapsed_time);
-        totalDoneTextView = findViewById(R.id.textView_total_test_done_result3);
+        totalDoneTextView = findViewById(R.id.textView_total_test_done_result);
         thisTimeLabelTextView = findViewById(R.id.textView_this_time);
         thisTimeTextView = (TextView) findViewById(R.id.textView_this_time_result);
         bestTextView = (TextView) findViewById(R.id.textView_best_result);
         averageTextView = (TextView) findViewById(R.id.textView_average_result);
         worstTextView = (TextView) findViewById(R.id.textView_worst_result);
         commentTextView = (TextView) findViewById(R.id.textView_welldone);
+        questionTypeTextView= findViewById(R.id.textView_question_type);
 
         if (!getIntent().getBooleanExtra("showComment", true)) {
             commentTextView.setVisibility(View.INVISIBLE);
@@ -56,13 +61,12 @@ public class ReportPanelActivity extends Activity {
             thisTimeLabelTextView.setText("Last Time:");
 
 
-
         }
 
         resultStore = new ResultStore(getApplicationContext().getFilesDir() + "resultDB.json");
         List<ResultElement> resultElementList = resultStore.readFromResultStore();
-        List<ResultElement> profileResultElementList = resultStore.getProfileStatistics(configProfile);
-
+        List<ResultElement> profileResultElementList = resultStore.getProfileStatistics(configProfile, configQuestionType);
+        questionTypeTextView.setText(configQuestionType);
         profileTimeTextView.setText(configProfile);
         elapsedTimeTextView.setText("" + resultStore.getProfileLastTime(profileResultElementList));
         totalDoneTextView.setText(profileResultElementList.size() + (resultElementList.size() > 1 ? " times" : " time"));

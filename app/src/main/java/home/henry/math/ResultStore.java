@@ -46,9 +46,9 @@ public class ResultStore {
 
     public List<ResultElement> createDummyResultList() {
         List resultList = new LinkedList<ResultElement>();
-        ResultElement resultElement1 = new ResultElement("Guest", new Date(), 78);
-        ResultElement resultElement2 = new ResultElement("Guest", new Date(), 60);
-        ResultElement resultElement3 = new ResultElement("Guest", new Date(), 54);
+        ResultElement resultElement1 = new ResultElement("Guest", "Addition", new Date(), 78);
+        ResultElement resultElement2 = new ResultElement("Guest", "Addition", new Date(), 60);
+        ResultElement resultElement3 = new ResultElement("Guest", "Addition", new Date(), 54);
         resultList.add(resultElement1);
         resultList.add(resultElement2);
         resultList.add(resultElement3);
@@ -143,23 +143,12 @@ public class ResultStore {
         return df.format(worstTime);
     }
 
-    boolean isNewPlayer(final String profile) {
-        Collection<ResultElement> result = Collections2.filter(resultList, new Predicate<ResultElement>() {
 
-
-            @Override
-            public boolean apply(final ResultElement resultElement) {
-                return resultElement.getProfile().equals(profile);
-            }
-        });
-        return result.size() == 0 ? true : false;
-    }
-
-    public List<ResultElement> getProfileStatistics(final String profile) {
+    public List<ResultElement> getProfileStatistics(final String profile, final String questionType) {
         Collection<ResultElement> profileReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
             @Override
             public boolean apply(final ResultElement resultElement) {
-                return resultElement.getProfile().equals(profile);
+                return resultElement.getProfile().equals(profile) && resultElement.questionType.equals(questionType);
             }
         });
         List profileReusultList = new ArrayList(profileReusult);
@@ -187,24 +176,5 @@ public class ResultStore {
 
     }
 
-    public void showReport(final ResultElement userResultElement) {
-        Collection<ResultElement> userReusult = Collections2.filter(resultList, new Predicate<ResultElement>() {
-            @Override
-            public boolean apply(final ResultElement resultElement) {
-                return resultElement.getProfile().equals(userResultElement.getProfile());
-            }
-        });
-        List userReusultList = new ArrayList(userReusult);
-        System.out.println(userReusultList);
-        System.out.println("========================Test Report===========================");
-        System.out.println(userResultElement.getProfile() + " , here's your test report...");
-        System.out.println("Total test done: " + userReusultList.size());
-        System.out.println("This Time: " + userResultElement.getPerformanceInSec() + " sec");
-        System.out.println("Average: " + getProfileAverage(userReusultList) + " sec");
-        System.out.println("Best: " + getProfileBest(userReusultList) + " sec");
-        System.out.println("Worst: " + getProfileWorst(userReusultList) + " sec");
-        System.out.println("==============================================================");
-
-    }
 
 }

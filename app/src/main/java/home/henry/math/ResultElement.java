@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class ResultElement {
     String profile;
+    String questionType;
     Date date;
     double performanceInSec;
 
@@ -12,10 +13,19 @@ public class ResultElement {
 
     }
 
-    public ResultElement(String profile, Date date, double performanceInSec) {
+    public ResultElement(String profile, String questionType, Date date, double performanceInSec) {
         this.profile = profile;
+        this.questionType=questionType;
         this.date = date;
         this.performanceInSec = performanceInSec;
+    }
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
     }
 
     public void setProfile(String profile) {
@@ -43,9 +53,10 @@ public class ResultElement {
     }
 
     @Override
-    public String toString() {
+    public String   toString() {
         return "ResultElement{" +
                 "profile='" + profile + '\'' +
+                ", questionType='" + questionType + '\'' +
                 ", date=" + date +
                 ", performanceInSec=" + performanceInSec +
                 '}';

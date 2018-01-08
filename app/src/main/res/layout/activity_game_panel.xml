@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Q1:"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:textAlignment="viewStart"
         android:layout_marginTop="30dp"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left2"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Dummy"
         android:textAlignment="viewStart"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="00:10"
         android:textAlignment="viewStart"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
