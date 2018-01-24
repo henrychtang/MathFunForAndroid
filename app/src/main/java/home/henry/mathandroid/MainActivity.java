@@ -72,6 +72,10 @@ public class MainActivity extends Activity {
         myIntent.putExtra("showComment", false);
         MainActivity.this.startActivity(myIntent);
     }
+    public void onStatisticsPanel(View fromView) {
+        Intent myIntent = new Intent(MainActivity.this, GroupedBarChartActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
 
     @Override
     protected void onStop() {
