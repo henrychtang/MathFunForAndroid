@@ -132,6 +132,17 @@ public class ResultStore {
         return df.format(bestTime);
     }
 
+    public Float getProfileBestFloating(List<ResultElement> profileResultList) {
+        if (isFirstAttempt(profileResultList))
+            return 0f;
+
+        double bestTime = profileResultList.get(0).getPerformanceInSec();
+        for (int i = 0; i < profileResultList.size(); ++i) {
+            bestTime = profileResultList.get(i).getPerformanceInSec() < bestTime ? profileResultList.get(i).getPerformanceInSec() : bestTime;
+        }
+        return Float.parseFloat(df.format(bestTime));
+    }
+
     public String getProfileWorst(List<ResultElement> profileResultList) {
         if (isFirstAttempt(profileResultList))
             return "N/A";

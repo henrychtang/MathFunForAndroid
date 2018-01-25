@@ -27,8 +27,8 @@ android {
         applicationId "home.henry.mathandroid"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 11
-        versionName "0.9.7"
+        versionCode 13
+        versionName "0.9.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

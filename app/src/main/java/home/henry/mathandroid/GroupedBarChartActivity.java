@@ -17,14 +17,18 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import afu.org.checkerframework.checker.igj.qual.I;
+import home.henry.math.ResultElement;
+import home.henry.math.ResultStore;
 
 public class GroupedBarChartActivity extends Activity {
 
     BarChart barChart2;
     BarChart barChart;
-
+    ResultStore resultStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,31 +36,55 @@ public class GroupedBarChartActivity extends Activity {
 
         barChart = findViewById(R.id.groupedBarChart);
         barChart2 = findViewById(R.id.groupedBarChart2);
+        resultStore = new ResultStore(getApplicationContext().getFilesDir() + "resultDB.json");
+        String[] profiles = {"Agnes","Anson","Audrey","Henry"};
+        String[] questionTypes = getResources().getStringArray(R.array.question_type);
+        List<ResultElement> profile0type0ResultElementList = resultStore.getProfileStatistics(profiles[0], questionTypes[0]);
+        List<ResultElement> profile1type0ResultElementList = resultStore.getProfileStatistics(profiles[1], questionTypes[0]);
+        List<ResultElement> profile2type0ResultElementList = resultStore.getProfileStatistics(profiles[2], questionTypes[0]);
+        List<ResultElement> profile3type0ResultElementList = resultStore.getProfileStatistics(profiles[3], questionTypes[0]);
+
+        List<ResultElement> profile0type1ResultElementList = resultStore.getProfileStatistics(profiles[0], questionTypes[1]);
+        List<ResultElement> profile1type1ResultElementList = resultStore.getProfileStatistics(profiles[1], questionTypes[1]);
+        List<ResultElement> profile2type1ResultElementList = resultStore.getProfileStatistics(profiles[2], questionTypes[1]);
+        List<ResultElement> profile3type1ResultElementList = resultStore.getProfileStatistics(profiles[3], questionTypes[1]);
+
+        List<ResultElement> profile0type2ResultElementList = resultStore.getProfileStatistics(profiles[0], questionTypes[2]);
+        List<ResultElement> profile1type2ResultElementList = resultStore.getProfileStatistics(profiles[1], questionTypes[2]);
+        List<ResultElement> profile2type2ResultElementList = resultStore.getProfileStatistics(profiles[2], questionTypes[2]);
+        List<ResultElement> profile3type2ResultElementList = resultStore.getProfileStatistics(profiles[3], questionTypes[2]);
+
+        List<ResultElement> profile0type3ResultElementList = resultStore.getProfileStatistics(profiles[0], questionTypes[3]);
+        List<ResultElement> profile1type3ResultElementList = resultStore.getProfileStatistics(profiles[1], questionTypes[3]);
+        List<ResultElement> profile2type3ResultElementList = resultStore.getProfileStatistics(profiles[2], questionTypes[3]);
+        List<ResultElement> profile3type3ResultElementList = resultStore.getProfileStatistics(profiles[3], questionTypes[3]);
+
+
 
         // create BarEntry for Bar Group 1
         ArrayList<BarEntry> bargroup1 = new ArrayList<>();
-        bargroup1.add(new BarEntry(0, 8));
-        bargroup1.add(new BarEntry(1, 4));
-        bargroup1.add(new BarEntry(2, 2));
-        bargroup1.add(new BarEntry(3, 12));
+        bargroup1.add(new BarEntry(0, resultStore.getProfileBestFloating(profile0type0ResultElementList)));
+        bargroup1.add(new BarEntry(1, resultStore.getProfileBestFloating(profile1type0ResultElementList)));
+        bargroup1.add(new BarEntry(2, resultStore.getProfileBestFloating(profile2type0ResultElementList)));
+        bargroup1.add(new BarEntry(3, resultStore.getProfileBestFloating(profile3type0ResultElementList)));
 
         ArrayList<BarEntry> bargroup2 = new ArrayList<>();
-        bargroup2.add(new BarEntry(4, 4));
-        bargroup2.add(new BarEntry(5, 5));
-        bargroup2.add(new BarEntry(6, 3));
-        bargroup2.add(new BarEntry(7, 6));
+        bargroup2.add(new BarEntry(4, resultStore.getProfileBestFloating(profile0type1ResultElementList)));
+        bargroup2.add(new BarEntry(5, resultStore.getProfileBestFloating(profile1type1ResultElementList)));
+        bargroup2.add(new BarEntry(6, resultStore.getProfileBestFloating(profile2type1ResultElementList)));
+        bargroup2.add(new BarEntry(7, resultStore.getProfileBestFloating(profile3type1ResultElementList)));
 
         ArrayList<BarEntry> bargroup3 = new ArrayList<>();
-        bargroup3.add(new BarEntry(0, 9));
-        bargroup3.add(new BarEntry(1, 9));
-        bargroup3.add(new BarEntry(2, 2));
-        bargroup3.add(new BarEntry(3, 3));
+        bargroup3.add(new BarEntry(0, resultStore.getProfileBestFloating(profile0type2ResultElementList)));
+        bargroup3.add(new BarEntry(1, resultStore.getProfileBestFloating(profile1type2ResultElementList)));
+        bargroup3.add(new BarEntry(2, resultStore.getProfileBestFloating(profile2type2ResultElementList)));
+        bargroup3.add(new BarEntry(3, resultStore.getProfileBestFloating(profile3type2ResultElementList)));
 
         ArrayList<BarEntry> bargroup4 = new ArrayList<>();
-        bargroup4.add(new BarEntry(4, 9));
-        bargroup4.add(new BarEntry(5, 4));
-        bargroup4.add(new BarEntry(6, 3));
-        bargroup4.add(new BarEntry(7, 15));
+        bargroup4.add(new BarEntry(4, resultStore.getProfileBestFloating(profile0type3ResultElementList)));
+        bargroup4.add(new BarEntry(5, resultStore.getProfileBestFloating(profile1type3ResultElementList)));
+        bargroup4.add(new BarEntry(6, resultStore.getProfileBestFloating(profile2type3ResultElementList)));
+        bargroup4.add(new BarEntry(7, resultStore.getProfileBestFloating(profile3type3ResultElementList)));
 
 // creating dataset for Bar Group1
         BarDataSet barDataSet1 = new BarDataSet(bargroup1, "Addition");
@@ -141,7 +169,7 @@ public class GroupedBarChartActivity extends Activity {
 
         BarData data2 = new BarData(dataSets2);
         barChart2.setDescription(null);
-        barChart2.animateY(2000);
+        barChart2.animateY(500);
         barChart2.setData(data2);
         barChart2.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         barChart2.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
