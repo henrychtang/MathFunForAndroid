@@ -192,7 +192,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="413dp" />
+        app:layout_constraintGuide_end="462dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right"
@@ -232,4 +232,15 @@
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"
         />
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3617128656845250/7675326536"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>

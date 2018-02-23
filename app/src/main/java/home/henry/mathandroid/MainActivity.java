@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class MainActivity extends Activity {
     private ImageView imageViewLogo;
     private MediaPlayer mp;
@@ -23,6 +26,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+         AdView mAdView = findViewById(R.id.adView);
+         AdRequest adRequest = new AdRequest.Builder().build();
+         mAdView.loadAd(adRequest);
+
         ScaleAnimation animation = new ScaleAnimation(
                 0, 1,
                 0, 1,

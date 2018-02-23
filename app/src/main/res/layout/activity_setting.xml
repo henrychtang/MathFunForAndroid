@@ -15,7 +15,7 @@
         android:textSize="42dp"
         app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
         app:layout_constraintRight_toLeftOf="@id/guidelineRight"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/adView" />
 
     <TextView
         android:id="@+id/ProfileTextView"
@@ -104,4 +104,18 @@
         android:entries="@array/number_of_questions"
         app:layout_constraintRight_toLeftOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@id/gameTypeSpinner" />
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3617128656845250/9164927205"
+        ads:layout_constraintTop_toBottomOf="@id/numberOfQuestionsSpinner"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent">
+    </com.google.android.gms.ads.AdView>
+
 </android.support.constraint.ConstraintLayout>

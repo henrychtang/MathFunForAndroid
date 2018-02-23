@@ -142,7 +142,7 @@ public class GroupedBarChartActivity extends Activity {
 // initialize the Bardata with argument labels and dataSet
         BarData data = new BarData(dataSets);
         barChart.setDescription(null);
-        barChart.animateY(2000);
+        barChart.animateY(1500);
         barChart.setData(data);
         barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -169,7 +169,7 @@ public class GroupedBarChartActivity extends Activity {
 
         BarData data2 = new BarData(dataSets2);
         barChart2.setDescription(null);
-        barChart2.animateY(500);
+        barChart2.animateY(1500);
         barChart2.setData(data2);
         barChart2.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         barChart2.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);

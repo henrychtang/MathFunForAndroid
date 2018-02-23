@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="home.henry.mathandroid.MainActivity"
 
-   >
+    >
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_left"
@@ -17,36 +17,36 @@
 
     <Button
         android:id="@+id/START"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:onClick="onGamePanel"
         android:text="Start"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/guideline_top"
-        android:layout_width="300dp"
         tools:layout_editor_absoluteY="134dp" />
 
     <Button
         android:id="@+id/REPORT"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:onClick="onReportPanel"
         android:text="Report"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/START"
-        android:layout_width="300dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="143dp" />
 
     <Button
         android:id="@+id/CONFIG"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:onClick="onSettingPanel"
         android:text="Config"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/REPORT"
-        android:layout_width="300dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -54,8 +54,8 @@
         android:id="@+id/ABOUT"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Statistics"
         android:onClick="onStatisticsPanel"
+        android:text="Statistics"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/CONFIG"
@@ -74,17 +74,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="436dp" />
+        app:layout_constraintGuide_begin="372dp" />
 
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="300dp"
         android:layout_height="278dp"
-        android:src="@drawable/math_fun_logo"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/math_fun_logo"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3617128656845250/7830351158"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>

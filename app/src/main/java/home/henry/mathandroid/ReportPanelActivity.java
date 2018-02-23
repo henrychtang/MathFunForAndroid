@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
@@ -34,6 +37,10 @@ public class ReportPanelActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_panel);
 
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         configProfile = MainActivity.getProfile(this);
         configQuestionType = MainActivity.getQuestionType(this);
